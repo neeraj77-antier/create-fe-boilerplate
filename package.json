@@ -1,6 +1,6 @@
 {
   "name": "create-fe-boilerplate",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "CLI to scaffold React boilerplates with authentication, OTP, Tailwind and Axios",
   "type": "module",
   "bin": {
