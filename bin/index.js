@@ -27,7 +27,7 @@ async function run() {
       type: "list",
       name: "language",
       message: "Choose language:",
-      choices: ["ts", "js"],
+      choices: ["ts (TypeScript)", "js (JavaScript)"],
     },
     {
       type: "list",
