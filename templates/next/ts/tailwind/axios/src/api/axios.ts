@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_HOST;
-
 export const axiosApi = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_HOST,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 axiosApi.interceptors.request.use((config) => {
@@ -15,3 +16,16 @@ axiosApi.interceptors.request.use((config) => {
   }
   return config;
 });
+
+axiosApi.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error?.response?.status === 401) {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
+    }
+    return Promise.reject(error);
+  }
+);

@@ -39,7 +39,8 @@ async function run() {
       type: "list",
       name: "api",
       message: "Choose API layer:",
-      choices: ["axios", "rtk"],
+      choices: (answers) =>
+        answers.framework === "next" ? ["axios"] : ["axios", "rtk"],
     },
     {
       type: "input",
@@ -48,6 +49,9 @@ async function run() {
       default: "my-app",
     },
   ]);
+
+  const apiChoices =
+    answers.framework === "next" ? ["axios"] : ["axios", "rtk"];
 
   /* ---------------- VALIDATE PROJECT NAME ---------------- */
 
@@ -67,7 +71,7 @@ async function run() {
     answers.framework,
     answers.language,
     answers.style,
-    answers.api
+    apiChoices.includes(answers.api) ? answers.api : "axios"
   );
 
   if (!fs.existsSync(templatePath)) {

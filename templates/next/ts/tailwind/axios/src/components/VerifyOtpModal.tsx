@@ -1,5 +1,6 @@
 "use client";
 
+import { axiosApi } from "@/api/axios";
 import { useState } from "react";
 
 interface VerifyOtpModalProps {
@@ -20,9 +21,12 @@ export default function VerifyOtpModal({
   if (!isOpen) return null;
 
   const handleVerify = async () => {
-    // 🔴 replace with axios call later
-    const fakeToken = "dummy-token";
-    onSuccess(fakeToken);
+    // const res = await axiosApi.post("/auth/verify-otp", {
+    //   refId,
+    //   otp,
+    // });
+
+    onSuccess("dummy Token");
   };
 
   return (
